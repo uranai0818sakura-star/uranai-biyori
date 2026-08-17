@@ -3,52 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>彼の本音チェック診断</title>
+    <title>恋の行方♡脈あり診断</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #fff0f5; color: #d63384; text-align: center; padding: 20px; }
-        .container { background-color: #ffffff; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { font-size: 24px; margin-bottom: 20px; }
-        button { background-color: #ff85a2; color: white; border: none; padding: 15px 30px; margin: 10px; border-radius: 25px; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        button:hover { background-color: #ff6b8d; }
-        #result { font-size: 22px; font-weight: bold; margin-top: 20px; display: none; }
+        /* 全体のデザイン */
+        body { 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
+            background-color: #fff0f5; /* ピンクの背景 */
+            color: #d63384; /* 濃いピンクの文字 */
+            text-align: center; 
+            padding: 20px; 
+            line-height: 1.6;
+        }
+        /* 診断カード */
+        .container { 
+            background-color: #ffffff; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            border-radius: 20px; 
+            box-shadow: 0 6px 20px rgba(214, 51, 132, 0.15); 
+            box-sizing: border-box;
+        }
+        /* タイトル */
+        h1 { font-size: 26px; margin-bottom: 10px; color: #ff6b8d; }
+        p.subtitle { color: #ff85a2; margin-bottom: 30px; font-size: 14px;}
+        
+        /* 質問テキスト */
+        #question { font-size: 20px; margin-bottom: 30px; min-height: 60px; }
+        
+        /* ボタンエリア */
+        #options { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;}
+        
+        /* ボタンのデザイン */
+        button { 
+            background-color: #ff85a2; /* 通常時ピンク */
+            color: white; 
+            border: none; 
+            padding: 15px 0; 
+            width: 45%; /* ボタンを横並びにするため調整 */
+            max-width: 180px;
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            font-weight: bold;
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover { 
+            background-color: #ff6b8d; /* ホバー時少し濃く */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* 結果表示エリア */
+        #result { display: none; }
+        .result-score { font-size: 48px; font-weight: bold; color: #ff4775; margin-bottom: 10px; }
+        .result-title { font-size: 22px; font-weight: bold; margin-bottom: 15px; color: #d63384; }
+        .result-advice { font-size: 16px; text-align: left; background-color: #fff5f8; padding: 20px; border-radius: 10px; margin-top: 20px;}
+        
+        /* リセットボタン */
+        .reset-btn { margin-top: 30px; background-color: #ccc; width: auto; padding: 10px 20px; font-size: 14px;}
+        .reset-btn:hover { background-color: #b3b3b3; }
     </style>
 </head>
 <body>
+
     <div class="container" id="quiz">
-        <h1 id="question">読み込み中...</h1>
-        <div id="options"></div>
+        <h1>恋の行方♡脈あり診断</h1>
+        <p class="subtitle">彼の気持ち、気になりませんか？</p>
+        
+        <div id="question">読み込み中...</div>
+        <div id="options">
+            <!-- ボタンはJavaScriptで自動生成されます -->
+        </div>
     </div>
-    <div class="container" id="result"></div>
+
+    <div class="container" id="result">
+        <div class="result-title">あなたの恋の脈あり度は...</div>
+        <div class="result-score" id="score-text">0%</div>
+        <div class="result-advice" id="advice-text">
+            <!-- アドバイスがJavaScriptで入ります -->
+        </div>
+        <button class="reset-btn" onclick="resetQuiz()">もう一度診断する</button>
+    </div>
 
     <script>
+        // 診断の質問データ（質問文と、はいを選んだ時の加点）
         const questions = [
             { q: "最近、彼からの連絡は自分からの方が多い？", score: 20 },
             { q: "最近、2人で会話する時間は増えた？", score: 40 },
             { q: "彼のSNSの投稿、ついチェックしちゃう？", score: 40 }
         ];
+
+        // 結果のパターン（点数ごとの出し分け）
+        const results = [
+            { threshold: 81, title: "両想い確実！？Happyな未来♡", advice: "素晴らしい結果です！彼もあなたに好意を持っている可能性大です。この調子で、自然な流れでデートに誘ってみたり、好意を匂わせるようなLINEを送ってみるのも良さそう。自信を持って進んでくださいね。" },
+            { threshold: 51, title: "脈ありサイン点灯中！", advice: "良い傾向です！彼もあなたに悪い印象は持っていません。ただ、まだ決定的な確信がない状態かも。焦らずに、共通の話題を増やしたり、相談事を持ちかけたりして、少しずつ距離を縮めていくのがおすすめです。" },
+            { threshold: 21, title: "今はまだ友達ゾーンかも...", advice: "残念ながら、現時点では恋愛対象として強く意識されていない可能性があります。でも大丈夫、ここからの逆転も十分可能です！まずは良き相談相手や、楽しい会話ができる存在を目指して、友達としての信頼関係を築くところから始めましょう。" },
+            { threshold: 0,  title: "これからが勝負！じっくり距離を縮めよう", advice: "今はまだ彼の気持ちがあなたに向いていないサインかもしれません。でも、恋はここからどう動くか分かりません！彼の好みのタイプをリサーチしたり、自分磨きを頑張って、彼を振り向かせるチャンスを伺いましょう。まずは挨拶から始めてみて。" }
+        ];
+
         let currentQ = 0;
         let score = 0;
 
+        // 質問を表示する関数
         function showQuestion() {
             if (currentQ < questions.length) {
-                document.getElementById('question').innerText = questions[currentQ].q;
+                document.getElementById('question').innerText = `Q${currentQ + 1}. ${questions[currentQ].q}`;
                 const opts = document.getElementById('options');
                 opts.innerHTML = `
                     <button onclick="next(true)">はい</button>
                     <button onclick="next(false)">いいえ</button>
                 `;
             } else {
-                document.getElementById('quiz').style.display = 'none';
-                const res = document.getElementById('result');
-                res.style.display = 'block';
-                res.innerText = `あなたの脈あり度は... ${score}% です！`;
+                showResult();
             }
         }
+
+        // 次の質問へ進む関数
         function next(isYes) {
-            if (isYes) score += questions[currentQ].score;
+            if (isYes) {
+                score += questions[currentQ].score;
+            }
             currentQ++;
             showQuestion();
         }
+
+        // 結果を表示する関数
+        function showResult() {
+            document.getElementById('quiz').style.display = 'none';
+            const resDiv = document.getElementById('result');
+            resDiv.style.display = 'block';
+
+            document.getElementById('score-text').innerText = `${score}%`;
+
+            // 点数に応じてアドバイスを選択
+            let finalResult = results[0]; // デフォルトは81点以上
+            for (let i = 0; i < results.length; i++) {
+                if (score >= results[i].threshold) {
+                    finalResult = results[i];
+                    break; // 該当する最初のパターンを採用
+                }
+            }
+
+            // タイトルとアドバイスを表示（HTMLタグを含めて反映）
+            document.getElementById('advice-text').innerHTML = `<strong>${finalResult.title}</strong><br><br>${finalResult.advice}`;
+        }
+
+        // 診断をリセットする関数
+        function resetQuiz() {
+            currentQ = 0;
+            score = 0;
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+            showQuestion();
+        }
+
+        // ページ読み込み時に最初の質問を表示
         showQuestion();
     </script>
 </body>
