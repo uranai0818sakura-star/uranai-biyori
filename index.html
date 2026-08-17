@@ -3,164 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>恋の行方♡脈あり診断</title>
+    <title>♡ 恋の魔法診断サロン ♡</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 全体のデザイン */
         body { 
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
-            background-color: #fff0f5; /* ピンクの背景 */
-            color: #d63384; /* 濃いピンクの文字 */
+            font-family: 'M PLUS Rounded 1c', sans-serif; 
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%); 
+            color: #d63384; 
             text-align: center; 
             padding: 20px; 
-            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
         }
-        /* 診断カード */
         .container { 
             background-color: #ffffff; 
             max-width: 500px; 
             margin: 0 auto; 
-            padding: 40px 20px; 
-            border-radius: 20px; 
-            box-shadow: 0 6px 20px rgba(214, 51, 132, 0.15); 
+            padding: 30px 20px; 
+            border-radius: 30px; 
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4); 
             box-sizing: border-box;
+            border: 4px dashed #ffb6c1;
         }
-        /* タイトル */
-        h1 { font-size: 26px; margin-bottom: 10px; color: #ff6b8d; }
-        p.subtitle { color: #ff85a2; margin-bottom: 30px; font-size: 14px;}
+        h1 { 
+            font-size: 24px; 
+            margin-bottom: 5px; 
+            color: #ff4775; 
+            text-shadow: 2px 2px 4px rgba(255, 192, 203, 0.5);
+        }
+        p.subtitle { 
+            color: #ff85a2; 
+            margin-bottom: 25px; 
+            font-size: 13px;
+            font-weight: bold;
+        }
         
-        /* 質問テキスト */
-        #question { font-size: 20px; margin-bottom: 30px; min-height: 60px; }
-        
-        /* ボタンエリア */
+        /* メニュー一覧のスクロールエリア */
+        .menu-scroll {
+            max-height: 420px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .menu-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .menu-scroll::-webkit-scrollbar-thumb {
+            background-color: #ffb6c1;
+            border-radius: 10px;
+        }
+
+        /* 診断選択ボタン */
+        .menu-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+            border: none;
+            padding: 14px 18px;
+            width: 100%;
+            margin: 8px 0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 154, 158, 0.3);
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+        .menu-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(255, 154, 158, 0.5);
+        }
+
+        /* 質問画面 */
+        #quiz-title {
+            color: #ff4775;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        #question { 
+            font-size: 17px; 
+            margin-bottom: 25px; 
+            min-height: 60px; 
+            color: #c71585;
+            background-color: #fff0f5;
+            padding: 15px;
+            border-radius: 15px;
+        }
         #options { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;}
         
-        /* ボタンのデザイン */
-        button { 
-            background-color: #ff85a2; /* 通常時ピンク */
+        .ans-btn { 
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white; 
             border: none; 
-            padding: 15px 0; 
-            width: 45%; /* ボタンを横並びにするため調整 */
+            padding: 12px 0; 
+            width: 45%; 
             max-width: 180px;
-            border-radius: 30px; 
+            border-radius: 25px; 
             cursor: pointer; 
-            font-size: 18px; 
+            font-size: 16px; 
             font-weight: bold;
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            box-shadow: 0 4px 10px rgba(255, 117, 140, 0.3);
+            transition: 0.2s;
         }
-        button:hover { 
-            background-color: #ff6b8d; /* ホバー時少し濃く */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        .ans-btn:hover { transform: translateY(-2px); }
+        
+        /* 結果画面 */
+        .result-score { font-size: 32px; font-weight: bold; color: #ff1493; margin: 10px 0; }
+        .result-title { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #ff4775; }
+        .result-advice { font-size: 14px; text-align: left; background-color: #fff0f5; padding: 15px; border-radius: 15px; margin-top: 15px; color: #b03060;}
+        
+        .back-btn { 
+            margin-top: 25px; 
+            background-color: #ffb6c1; 
+            width: auto; 
+            padding: 10px 25px; 
+            font-size: 14px; 
+            border-radius: 20px; 
+            border: none; 
+            color: white; 
+            font-weight: bold;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(255, 182, 193, 0.4);
         }
-        
-        /* 結果表示エリア */
-        #result { display: none; }
-        .result-score { font-size: 48px; font-weight: bold; color: #ff4775; margin-bottom: 10px; }
-        .result-title { font-size: 22px; font-weight: bold; margin-bottom: 15px; color: #d63384; }
-        .result-advice { font-size: 16px; text-align: left; background-color: #fff5f8; padding: 20px; border-radius: 10px; margin-top: 20px;}
-        
-        /* リセットボタン */
-        .reset-btn { margin-top: 30px; background-color: #ccc; width: auto; padding: 10px 20px; font-size: 14px;}
-        .reset-btn:hover { background-color: #b3b3b3; }
+        .back-btn:hover { background-color: #ff91a4; }
     </style>
 </head>
 <body>
 
-    <div class="container" id="quiz">
-        <h1>恋の行方♡脈あり診断</h1>
-        <p class="subtitle">彼の気持ち、気になりませんか？</p>
-        
-        <div id="question">読み込み中...</div>
-        <div id="options">
-            <!-- ボタンはJavaScriptで自動生成されます -->
+    <div class="container" id="app">
+        <!-- メニュー画面 -->
+        <div id="menu-screen">
+            <h1>♡ 恋の魔法診断サロン ♡</h1>
+            <p class="subtitle">今のあなたにぴったりの診断をえらんでね♪</p>
+            <div class="menu-scroll" id="menu-list">
+                <!-- 10個のメニューが自動で入ります -->
+            </div>
         </div>
-    </div>
 
-    <div class="container" id="result">
-        <div class="result-title">あなたの恋の脈あり度は...</div>
-        <div class="result-score" id="score-text">0%</div>
-        <div class="result-advice" id="advice-text">
-            <!-- アドバイスがJavaScriptで入ります -->
+        <!-- 診断質問画面 -->
+        <div id="quiz-screen" style="display: none;">
+            <h1 id="quiz-title">診断中</h1>
+            <div id="question">読み込み中...</div>
+            <div id="options"></div>
+            <button class="back-btn" onclick="goHome()">🏠 メニューに戻る</button>
         </div>
-        <button class="reset-btn" onclick="resetQuiz()">もう一度診断する</button>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" style="display: none;">
+            <div class="result-title" id="res-heading">診断結果</div>
+            <div class="result-score" id="score-text">0点</div>
+            <div class="result-advice" id="advice-text">アドバイス</div>
+            <button class="back-btn" onclick="goHome()">🏠 メニューに戻る</button>
+        </div>
     </div>
 
     <script>
-        // 診断の質問データ（質問文と、はいを選んだ時の加点）
-        const questions = [
-            { q: "最近、彼からの連絡は自分からの方が多い？", score: 20 },
-            { q: "最近、2人で会話する時間は増えた？", score: 40 },
-            { q: "彼のSNSの投稿、ついチェックしちゃう？", score: 40 }
-        ];
+        // 10個の恋愛診断データ
+        const quizzes = {
+            1: {
+                title: "彼の隠れ本音チェッカー",
+                questions: [
+                    { q: "最近、彼からの連絡は自分からの方が多い？", score: 20 },
+                    { q: "最近、2人で会話する時間は増えた？", score: 40 },
+                    { q: "彼のSNSの投稿、ついチェックしちゃう？", score: 40 }
+                ],
+                results: [
+                    { threshold: 81, title: "両想い確実！？Happyな未来♡", advice: "彼もあなたに好意を持っている可能性大！自信を持って自然に距離を縮めてね。" },
+                    { threshold: 51, title: "脈ありサイン点灯中！", advice: "いい傾向です！共通の話題を増やして少しずつ距離を縮めていこう。" },
+                    { threshold: 21, title: "今はまだ友達ゾーンかも...", advice: "まずは良き相談相手を目指して、信頼関係を築くところから始めよう。" },
+                    { threshold: 0,  title: "これからが勝負！", advice: "恋はここから！自分磨きを頑張ってチャンスを伺ってみて。" }
+                ]
+            },
+            2: {
+                title: "あなたの恋愛こじらせ度診断",
+                questions: [
+                    { q: "LINEの返事が遅いと、嫌われたか不安になる？", score: 35 },
+                    { q: "本当は寂しいのに、強がって「平気」と言ってしまう？", score: 35 },
+                    { q: "過去の恋愛を引きずってしまいがち？", score: 30 }
+                ],
+                results: [
+                    { threshold: 70, title: "愛されこじらせタイプ…", advice: "不安で彼の負担になってるかも？自分の時間をめいっぱい楽しんでみて！" },
+                    { threshold: 31, title: "ちょっぴり心配性なピュアタイプ", advice: "素直になれない時があるみたい。柔らかく気持ちを伝えてみよう。" },
+                    { threshold: 0,  title: "メンタル安定の愛されタイプ♡", advice: "自分の軸がしっかりしていて素敵！その自然体の魅力が彼の心を掴みます。" }
+                ]
+            },
+            3: {
+                title: "あなたを狙う秘密のファン度",
+                questions: [
+                    { q: "最近、やけに視線を感じることがある？", score: 40 },
+                    { q: "男友達や同僚から、急に連絡が増えた？", score: 30 },
+                    { q: "あなたの趣味や好みをやたらと知っている人がいる？", score: 30 }
+                ],
+                results: [
+                    { threshold: 70, title: "身近に熱烈なファンがいる予感！", advice: "気づいていないだけで、あなたにメロメロな人が近くにいそうだよ♡" },
+                    { threshold: 30, title: "好感度アップ上昇中！", advice: "あなたの魅力がまわりにジワジワ伝わっているみたい。" },
+                    { threshold: 0,  title: "これからのモテ期に期待！", advice: "イメチェンや新しい趣味を始めると一気に注目度がアップしそう！" }
+                ]
+            },
+            4: {
+                title: "次の恋の引き寄せ方診断",
+                questions: [
+                    { q: "自分の「理想のタイプ」を具体的に言える？", score: 30 },
+                    { q: "休日はお出かけすることが多い？", score: 40 },
+                    { q: "最近、新しいことや挑戦をした？", score: 30 }
+                ],
+                results: [
+                    { threshold: 70, title: "恋愛引き寄せ体質カンペキ♡", advice: "今の調子でワクワクする毎日を過ごせば、素敵な出会いがすぐそこに！" },
+                    { threshold: 30, title: "引き寄せパワー充電中！", advice: "行きたい場所や理想のデートを具体的にノートに書いてみると引き寄せ加速！" },
+                    { threshold: 0,  title: "まずは日常のトキメキ探しから♪", advice: "お気に入りのカフェに行ったり、新しい香水に変えて気分を上げよう。" }
+                ]
+            },
+            5: {
+                title: "片思いの進展スピード診断",
+                questions: [
+                    { q: "2人で2人きりでお出かけしたことがある？", score: 40 },
+                    { q: "個人的なプライベートの相談ができる仲？", score: 40 },
+                    { q: "お互いの下の名前やあだ名で呼んでいる？", score: 20 }
+                ],
+                results: [
+                    { threshold: 80, title: "恋の特急列車でスピード進行中！", advice: "一気に距離が縮まるタイミング！勇気を出して一歩踏み出してみて。" },
+                    { threshold: 40, title: "順調に愛が育つまったりペース♪", advice: "焦らずじっくり仲良くなれている証拠。楽しい時間を積み重ねよう。" },
+                    { threshold: 0,  title: "発車オーライのスタート地点！", advice: "まずは共通の趣味や楽しい話題で、笑顔をたくさん見せることから♪" }
+                ]
+            },
+            6: {
+                title: "あなたの小悪魔モテ度診断",
+                questions: [
+                    { q: "甘え上手なところがあると思う？", score: 40 },
+                    { q: "相手のリアクションを見て楽しんじゃう？", score: 30 },
+                    { q: "自分の見せ方や可愛い表情を研究している？", score: 30 }
+                ],
+                results: [
+                    { threshold: 70, title: "天性の小悪魔モテ女子♡", advice: "男性をドキッとさせる天才！その調子でみんなを翻弄しちゃって。" },
+                    { threshold: 30, title: "秘めたる小悪魔の才能あり！", advice: "たまに見せるギャップや甘えん坊な一面を武器にしてみては？" },
+                    { threshold: 0,  title: "ピュアで愛され癒やし系♪", advice: "そのまっすぐでピュアな優しさが最大の武器！安心して愛されてね。" }
+                ]
+            },
+            7: {
+                title: "運命の相手との出会い方診断",
+                questions: [
+                    { q: "初対面の人と話すのはどちらかといえば好き？", score: 30 },
+                    { q: "偶然の一致や「運命かも」と思うことがよくある？", score: 40 },
+                    { q: "自分の直感を信じるタイプ？", score: 30 }
+                ],
+                results: [
+                    { threshold: 70, title: "ドラマチックな運命の出会い型♡", advice: "思わぬ場所やタイミングでビビッとくる出会いが訪れそう！直感を大切に。" },
+                    { threshold: 30, title: "ジワジワ深まる絆の出会い型", advice: "仕事や共通のコミュニティなど、身近なところからゆっくり愛が芽生えそう。" },
+                    { threshold: 0,  title: "自分で切り開く開拓型！", advice: "自分から積極的に動くことで、最高の出会いを引き寄せられるよ！" }
+                ]
+            },
+            8: {
+                title: "今の恋愛エネルギー充電率",
+                questions: [
+                    { q: "最近、鏡を見て「可愛い・綺麗」と思った？", score: 30 },
+                    { q: "恋愛ドラマやキュンとする漫画が好き？", score: 35 },
+                    { q: "「恋をしたい！」と心からワクワクしている？", score: 35 }
+                ],
+                results: [
+                    { threshold: 70, title: "恋愛パワー満タン！キラキラ期♡", advice: "今のあなたは一番魅力があふれてる状態！自信を持ってアピールして。" },
+                    { threshold: 35, title: "エネルギー平均値・穏やかな恋模様", advice: "自分のペースでまったり恋愛を楽しめる最高のコンディションだよ。" },
+                    { threshold: 0,  title: "ちょっぴり恋のバッテリー切れ？", advice: "まずは自分をたっぷり甘やかして、美味しいものを食べてエネルギーチャージ！" }
+                ]
+            },
+            9: {
+                title: "あなたに惚れ込む彼のキラーポイント",
+                questions: [
+                    { q: "誰に対しても優しく気配りできる方だ？", score: 40 },
+                    { q: "よく笑い、楽しそうに話を聞くタイプ？", score: 40 },
+                    { q: "自分の意見をしっかり持っている？", score: 20 }
+                ],
+                results: [
+                    { threshold: 70, title: "「癒やしと笑顔」に彼はメロメロ♡", advice: "あなたの柔らかな笑顔と気配りに、彼はいつも心を癒やされているみたい。" },
+                    { threshold: 30, title: "「一途なピュアさ」に彼はキュン♪", advice: "何事にも一生懸命でまっすぐなあなたの一面に、彼はグッときています。" },
+                    { threshold: 0,  title: "「自然体の魅力」に惹かれているよ", advice: "飾らないそのままのあなたこそが、彼の最大のときめきポイントです。" }
+                ]
+            },
+            10: {
+                title: "ハッピーエンドな恋の結末予言",
+                questions: [
+                    { q: "自分の恋愛は絶対うまくいくと信じている？", score: 40 },
+                    { q: "失敗しても「次だ次！」と前を向ける？", score: 40 },
+                    { q: "日頃から小さな幸せをたくさん見つけている？", score: 20 }
+                ],
+                results: [
+                    { threshold: 70, title: "最高のハッピーエンド間違いなし♡", advice: "ポジティブなあなたのエネルギーが、最高の未来を引き寄せます！お楽しみに。" },
+                    { threshold: 30, title: "努力が実る大逆転ハッピー型！", advice: "途中で諦めずに向き合った分だけ、甘くて深い幸せがやってくるよ。" },
+                    { threshold: 0,  title: "これから自分で作るミラクル展開型", advice: "あなたの選択次第で、未来はいくらでもピカピカに変えられる！" }
+                ]
+            }
+        };
 
-        // 結果のパターン（点数ごとの出し分け）
-        const results = [
-            { threshold: 81, title: "両想い確実！？Happyな未来♡", advice: "素晴らしい結果です！彼もあなたに好意を持っている可能性大です。この調子で、自然な流れでデートに誘ってみたり、好意を匂わせるようなLINEを送ってみるのも良さそう。自信を持って進んでくださいね。" },
-            { threshold: 51, title: "脈ありサイン点灯中！", advice: "良い傾向です！彼もあなたに悪い印象は持っていません。ただ、まだ決定的な確信がない状態かも。焦らずに、共通の話題を増やしたり、相談事を持ちかけたりして、少しずつ距離を縮めていくのがおすすめです。" },
-            { threshold: 21, title: "今はまだ友達ゾーンかも...", advice: "残念ながら、現時点では恋愛対象として強く意識されていない可能性があります。でも大丈夫、ここからの逆転も十分可能です！まずは良き相談相手や、楽しい会話ができる存在を目指して、友達としての信頼関係を築くところから始めましょう。" },
-            { threshold: 0,  title: "これからが勝負！じっくり距離を縮めよう", advice: "今はまだ彼の気持ちがあなたに向いていないサインかもしれません。でも、恋はここからどう動くか分かりません！彼の好みのタイプをリサーチしたり、自分磨きを頑張って、彼を振り向かせるチャンスを伺いましょう。まずは挨拶から始めてみて。" }
-        ];
+        // メニュー画面に10個のボタンを自動生成する
+        function renderMenu() {
+            const list = document.getElementById('menu-list');
+            let html = '';
+            for (let id in quizzes) {
+                html += `<button class="menu-btn" onclick="startQuiz(${id})">💖 ${quizzes[id].title}</button>`;
+            }
+            list.innerHTML = html;
+        }
 
+        let currentQuizId = 1;
         let currentQ = 0;
         let score = 0;
 
-        // 質問を表示する関数
+        function startQuiz(id) {
+            currentQuizId = id;
+            currentQ = 0;
+            score = 0;
+            document.getElementById('menu-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            document.getElementById('quiz-title').innerText = quizzes[id].title;
+            showQuestion();
+        }
+
         function showQuestion() {
-            if (currentQ < questions.length) {
-                document.getElementById('question').innerText = `Q${currentQ + 1}. ${questions[currentQ].q}`;
+            const qData = quizzes[currentQuizId].questions;
+            if (currentQ < qData.length) {
+                document.getElementById('question').innerText = `Q${currentQ + 1}. ${qData[currentQ].q}`;
                 const opts = document.getElementById('options');
                 opts.innerHTML = `
-                    <button onclick="next(true)">はい</button>
-                    <button onclick="next(false)">いいえ</button>
+                    <button class="ans-btn" onclick="next(true)">はい ✨</button>
+                    <button class="ans-btn" onclick="next(false)">いいえ 💭</button>
                 `;
             } else {
                 showResult();
             }
         }
 
-        // 次の質問へ進む関数
         function next(isYes) {
+            const qData = quizzes[currentQuizId].questions;
             if (isYes) {
-                score += questions[currentQ].score;
+                score += qData[currentQ].score;
             }
             currentQ++;
             showQuestion();
         }
 
-        // 結果を表示する関数
         function showResult() {
-            document.getElementById('quiz').style.display = 'none';
-            const resDiv = document.getElementById('result');
-            resDiv.style.display = 'block';
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
 
-            document.getElementById('score-text').innerText = `${score}%`;
+            const qData = quizzes[currentQuizId];
+            document.getElementById('score-text').innerText = `${score}ポイント`;
+            document.getElementById('res-heading').innerText = qData.title + "の結果";
 
-            // 点数に応じてアドバイスを選択
-            let finalResult = results[0]; // デフォルトは81点以上
-            for (let i = 0; i < results.length; i++) {
-                if (score >= results[i].threshold) {
-                    finalResult = results[i];
-                    break; // 該当する最初のパターンを採用
+            let finalRes = qData.results[qData.results.length - 1];
+            for (let i = 0; i < qData.results.length; i++) {
+                if (score >= qData.results[i].threshold) {
+                    finalRes = qData.results[i];
+                    break;
                 }
             }
 
-            // タイトルとアドバイスを表示（HTMLタグを含めて反映）
-            document.getElementById('advice-text').innerHTML = `<strong>${finalResult.title}</strong><br><br>${finalResult.advice}`;
+            document.getElementById('advice-text').innerHTML = `<strong>${finalRes.title}</strong><br><br>${finalRes.advice}`;
         }
 
-        // 診断をリセットする関数
-        function resetQuiz() {
-            currentQ = 0;
-            score = 0;
-            document.getElementById('result').style.display = 'none';
-            document.getElementById('quiz').style.display = 'block';
-            showQuestion();
+        function goHome() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('menu-screen').style.display = 'block';
         }
 
-        // ページ読み込み時に最初の質問を表示
-        showQuestion();
+        // ページ読み込み時にメニューを表示
+        renderMenu();
     </script>
 </body>
 </html>
