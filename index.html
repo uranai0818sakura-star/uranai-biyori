@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彼の本音チェック診断</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #fff0f5; color: #d63384; text-align: center; padding: 20px; }
+        .container { background-color: #ffffff; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { font-size: 24px; margin-bottom: 20px; }
+        button { background-color: #ff85a2; color: white; border: none; padding: 15px 30px; margin: 10px; border-radius: 25px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:hover { background-color: #ff6b8d; }
+        #result { font-size: 22px; font-weight: bold; margin-top: 20px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container" id="quiz">
+        <h1 id="question">読み込み中...</h1>
+        <div id="options"></div>
+    </div>
+    <div class="container" id="result"></div>
+
+    <script>
+        const questions = [
+            { q: "最近、彼からの連絡は自分からの方が多い？", score: 20 },
+            { q: "最近、2人で会話する時間は増えた？", score: 40 },
+            { q: "彼のSNSの投稿、ついチェックしちゃう？", score: 40 }
+        ];
+        let currentQ = 0;
+        let score = 0;
+
+        function showQuestion() {
+            if (currentQ < questions.length) {
+                document.getElementById('question').innerText = questions[currentQ].q;
+                const opts = document.getElementById('options');
+                opts.innerHTML = `
+                    <button onclick="next(true)">はい</button>
+                    <button onclick="next(false)">いいえ</button>
+                `;
+            } else {
+                document.getElementById('quiz').style.display = 'none';
+                const res = document.getElementById('result');
+                res.style.display = 'block';
+                res.innerText = `あなたの脈あり度は... ${score}% です！`;
+            }
+        }
+        function next(isYes) {
+            if (isYes) score += questions[currentQ].score;
+            currentQ++;
+            showQuestion();
+        }
+        showQuestion();
+    </script>
+</body>
+</html>
