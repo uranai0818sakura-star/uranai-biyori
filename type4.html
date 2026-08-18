@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今の彼のあなたへの本音占い</title>
+  <style>
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+      background: linear-gradient(135deg, #f3e8ff 0%, #e0c3fc 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #555;
+      box-sizing: border-box;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 30px 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 12px 30px rgba(160, 100, 220, 0.2);
+      text-align: center;
+    }
+    h1 {
+      color: #8b5cf6;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    p.sub {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 25px;
+    }
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .tarot-card {
+      width: 90px;
+      height: 140px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border: 3px solid #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tarot-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+    }
+    #result {
+      display: none;
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #faf5ff;
+      border: 2px dashed #a855f7;
+    }
+    .card-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #7c3aed;
+      margin-bottom: 10px;
+    }
+    .res-desc {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #4a4a4a;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      color: #888;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌙 今の彼のあなたへの本音 🔮</h1>
+    <p class="sub">彼のことを思い浮かべながら、直感でカードを1枚選んでね</p>
+
+    <div class="card-container" id="cards">
+      <div class="tarot-card" onclick="openCard(0)">🌙</div>
+      <div class="tarot-card" onclick="openCard(1)">✨</div>
+      <div class="tarot-card" onclick="openCard(2)">🔮</div>
+    </div>
+
+    <div id="result">
+      <div class="card-name" id="cardName"></div>
+      <div class="res-desc" id="cardDesc"></div>
+      <a href="index.html" class="back-btn">← トップページに戻る</a>
+    </div>
+  </div>
+
+  <script>
+    const tarotResults = [
+      {
+        name: "【 太陽のカード ☀️ 】",
+        desc: "彼はあなたと一緒にいると心から楽しくて、元気をもらえると感じています！「もっと素の自分を見せたい」「一緒に出かけたい」という前向きな気持ちでいっぱいです。"
+      },
+      {
+        name: "【 恋人のカード 💖 】",
+        desc: "あなたに対して強い魅力を感じており、特別な感情を抱いています。「もっと距離を縮めたい」「もっと自分のことを知ってほしい」と意識している可能性大！"
+      },
+      {
+        name: "【 節制のカード 🍃 】",
+        desc: "あなたに対して誠実で、心地よい信頼感を抱いています。焦らずじっくりとお互いを知り、穏やかで安心できる関係を築いていきたいと考えているようです。"
+      }
+    ];
+
+    function openCard(index) {
+      document.getElementById("cards").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      
+      document.getElementById("cardName").innerText = tarotResults[index].name;
+      document.getElementById("cardDesc").innerText = tarotResults[index].desc;
+    }
+  </script>
+
+</body>
+</html>
