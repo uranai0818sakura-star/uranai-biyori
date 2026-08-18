@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONE PIECE キャラクタータイプ診断</title>
+  <style>
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      box-sizing: border-box;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 20px;
+      padding: 25px 20px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    h1 {
+      color: #d9381e;
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+    }
+    p.sub {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .q-box {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .q-title {
+      font-weight: bold;
+      color: #1e3c72;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    button {
+      background: #d9381e;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 15px;
+      width: 100%;
+    }
+    button:hover {
+      background: #b82e17;
+    }
+    #result {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #fff8f0;
+      border: 2px dashed #d9381e;
+    }
+    .res-type {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #d9381e;
+      margin-bottom: 10px;
+    }
+    .res-desc {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #4a4a4a;
+      text-align: left;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>☠️ ONE PIECE キャラ診断 ☠️</h1>
+    <p class="sub">15の質問に答えて、人気キャラ30人の中からあなたに最も似ているキャラを判定！</p>
+
+    <div id="quiz">
+      <div class="q-box">
+        <div class="q-title">Q1. 夢や目標に対しての向き合い方は？</div>
+        <label><input type="radio" name="q1" value="leader"> 絶対に諦めず、周りを巻き込んで突き進む</label>
+        <label><input type="radio" name="q1" value="stoic"> 黙って己を鍛え上げ、頂点を目指す</label>
+        <label><input type="radio" name="q1" value="smart"> 現実的に計算し、計画的にクリアする</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q2. チーム内でのあなたの立ち位置は？</div>
+        <label><input type="radio" name="q2" value="leader"> みんなを惹きつけるムードメーカー・中心人物</label>
+        <label><input type="radio" name="q2" value="support"> 陰でサポートし、頼れる実務派</label>
+        <label><input type="radio" name="q2" value="unique"> 場の空気を和ませる愛され・個性派キャラ</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q3. ピンチに陥ったときの行動は？</div>
+        <label><input type="radio" name="q3" value="leader"> 迷わず正面突破！勢いで乗り切る</label>
+        <label><input type="radio" name="q3" value="cool"> 状況を冷静に分析し、作戦を立てる</label>
+        <label><input type="radio" name="q3" value="unique"> 一旦逃げて好機をうかがう</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q4. 大切にしている価値観は？</div>
+        <label><input type="radio" name="q4" value="leader"> 自由と情熱</label>
+        <label><input type="radio" name="q4" value="stoic"> 義理と人情、誇り</label>
+        <label><input type="radio" name="q4" value="smart"> 知識と真実の探求</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q5. 休日や自由な時間の過ごし方は？</div>
+        <label><input type="radio" name="q5" value="leader"> 仲間と思い切り遊んだり外に出かける</label>
+        <label><input type="radio" name="q5" value="stoic"> トレーニングや趣味に没頭、または静かに過ごす</label>
+        <label><input type="radio" name="q5" value="smart"> 読書やカフェでのんびり自分時間</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q6. 好きな食事や宴のスタイルは？</div>
+        <label><input type="radio" name="q6" value="leader"> とにかく豪快に！みんなでワイワイ楽しむ</label>
+        <label><input type="radio" name="q6" value="support"> 料理の味や雰囲気、気配りを重視する</label>
+        <label><input type="radio" name="q6" value="cool"> 美酒やお気に入りメニューを味わう</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q7. 怒るとどうなる？</div>
+        <label><input type="radio" name="q7" value="leader"> 感情を爆発させて即行動</label>
+        <label><input type="radio" name="q7" value="cool"> 静かに威圧感を放ち、淡々と対処する</label>
+        <label><input type="radio" name="q7" value="smart"> お説教モードになり言葉で詰める</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q8. 買い物するときの傾向は？</div>
+        <label><input type="radio" name="q8" value="smart"> お得感重視！しっかり節約＆吟味</label>
+        <label><input type="radio" name="q8" value="leader"> 欲しいと思ったら直感で即買い</label>
+        <label><input type="radio" name="q8" value="support"> 誰かを喜ばせるプレゼントを探す</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q9. 人との付き合い方は？</div>
+        <label><input type="radio" name="q9" value="leader"> 初対面でもすぐ打ち解けて仲間になれる</label>
+        <label><input type="radio" name="q9" value="stoic"> 狭く深く、信頼できる人と付き合う</label>
+        <label><input type="radio" name="q9" value="cool"> 適度な距離感を保ち、深入りしすぎない</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q10. 自分の強みだと思うところは？</div>
+        <label><input type="radio" name="q10" value="leader"> どんな時もポジティブでいられる圧倒的カリスマ性</label>
+        <label><input type="radio" name="q10" value="support"> 細やかな配慮と周囲への思いやり</label>
+        <label><input type="radio" name="q10" value="stoic"> プレッシャーに強くブレない精神力</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q11. 自分の弱みだと思うところは？</div>
+        <label><input type="radio" name="q11" value="leader"> 直感で動きすぎて周囲をヒヤヒヤさせるところ</label>
+        <label><input type="radio" name="q11" value="unique"> 心配性や照れ隠しで強がってしまうところ</label>
+        <label><input type="radio" name="q11" value="stoic"> 頑固で自分の意志を曲げにくいところ</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q12. 人から言われると嬉しい褒め言葉は？</div>
+        <label><input type="radio" name="q12" value="support"> 「頼りになるね」「いつも助かっているよ」</label>
+        <label><input type="radio" name="q12" value="cool"> 「かっこいい」「クールで洗練されているね」</label>
+        <label><input type="radio" name="q12" value="leader"> 「一緒に行くと本当に楽しい！最高！」</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q13. 自分の信念と周囲の意見が食い違ったら？</div>
+        <label><input type="radio" name="q13" value="leader"> 自分の信念を信じて貫き通す</label>
+        <label><input type="radio" name="q13" value="smart"> 話し合って最も理にかなう答えを探す</label>
+        <label><input type="radio" name="q13" value="stoic"> 譲れない部分だけは絶対に譲らない</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q14. 困っている人を見かけたら？</div>
+        <label><input type="radio" name="q14" value="leader"> 理由を問わず助けの手を差し伸べる</label>
+        <label><input type="radio" name="q14" value="support"> さりげなくフォローしてサポートする</label>
+        <label><input type="radio" name="q14" value="cool"> 状況を見極めて適切な手助けをする</label>
+      </div>
+
+      <div class="q-box">
+        <div class="q-title">Q15. あなたにとって「理想の生き方」とは？</div>
+        <label><input type="radio" name="q15" value="leader"> 何にも縛られず自由で冒険に満ちた生き方</label>
+        <label><input type="radio" name="q15" value="stoic"> 自分の限界を超え、誇りを守り抜く生き方</label>
+        <label><input type="radio" name="q15" value="cool"> 己の美学を持ち、スマートに目的を果たす生き方</label>
+      </div>
+
+      <button onclick="calc()">診断結果を見る！</button>
+    </div>
+
+    <div id="result">
+      <div class="res-type" id="resType"></div>
+      <div class="res-desc" id="resDesc"></div>
+      <a href="index.html" class="back-btn">← トップページに戻る</a>
+    </div>
+  </div>
+
+  <script>
+    // 人気ランキング上位30人のキャラクターデータベース
+    const characters = [
+      // 情熱・リーダー系
+      { name: "モンキー・D・ルフィ", group: "leader", desc: "まっすぐで自由を愛する純粋なリーダー！圧倒的なカリスマ性と行動力で仲間を惹きつけます。" },
+      { name: "ポートガス・D・エース", group: "leader", desc: "礼儀正しく弟思いな情熱家。強い信念と愛嬌を併せ持ち、誰からも慕われるカリスマの持ち主。" },
+      { name: "サボ", group: "leader", desc: "自由を求めて立ち上がる革命軍の参謀総長。優しさと高い実力を兼ね備えた頼れる兄貴分です。" },
+      { name: "シャンクス", group: "leader", desc: "器が大きく、普段は気さくで温厚。しかし大切な仲間を傷つける者には容赦しない男気にあふれています。" },
+      { name: "ユースタス・キッド", group: "leader", desc: "凶暴で気性が荒い反面、不屈の闘志を持つ野心家。自分の夢に向かって一歩も引きません。" },
+      { name: "ヤマト", group: "leader", desc: "まっすぐで純粋な強い意志の持ち主。自分の生き方を自分で切り拓く自由なスピリットを持っています。" },
+      { name: "キャベンディッシュ", group: "leader", desc: "華やかで目立ちたがり屋な美剣士。自分に対する絶対の自信とプライドを持っています。" },
+
+      // ストイック・信念系
+      { name: "ロロノア・ゾロ", group: "stoic", desc: "ストイックで武士道精神を貫く剣士。武骨で不言実行、ここぞという場面で最も頼りになります。" },
+      { name: "ジュラキュール・ミホーク", group: "stoic", desc: "孤高にして最強。静けさの中に圧倒的な威厳を持ち、己の道を極め続ける完璧主義者です。" },
+      { name: "カタクリ", group: "stoic", desc: "家族とプライドを守るため完璧であり続ける男。ストイックで敵に対しても敬意を払う品格があります。" },
+      { name: "ジンベエ", group: "stoic", desc: "仁義を重んじ、義理と人情に生きる「海侠」。どんな困難にも動じない誠実さと重厚感の持ち主です。" },
+      { name: "シルバーズ・レイリー", group: "stoic", desc: "落ち着きと余裕を漂わせる伝説の指導者。広い視野と深い洞察力で後輩たちを温かく導きます。" },
+      { name: "スモーカー", group: "stoic", desc: "不器用で口は悪いものの、己の正義を曲げない硬派な凄腕。筋の通らないことは許さない硬派タイプです。" },
+
+      // クール・戦略系
+      { name: "トラファルガー・ロー", group: "cool", desc: "クールで頭脳明晰な戦略家。一見ドライですが、義理深く内面には熱い想いを秘めています。" },
+      { name: "クロコダイル", group: "cool", desc: "綿密な計算と野望を胸に秘める知性派。威厳に満ちた立ち振る舞いで周囲を圧倒します。" },
+      { name: "ドンキホーテ・ドフラミンゴ", group: "cool", desc: "極めて高いIQとカリスマ性を併せ持つ策士。自分のルールとファミリーを巧みに束ねます。" },
+      { name: "マルコ", group: "cool", desc: "語り口調は穏やかで面倒見が良い実力者。頼もしさと包容力で周囲をそっと支えるお兄さん的存在です。" },
+
+      // 知性・しっかり者系
+      { name: "ナミ", group: "smart", desc: "頭の回転が早く現実的なしっかり者！お金や計画の管理が得意で、チームを導く司令塔です。" },
+      { name: "ニコ・ロビン", group: "smart", desc: "ミステリアスで知性あふれる知識人。どんな時も冷静に物事を見極め、大人の余裕を見せます。" },
+      { name: "ボア・ハンコック", group: "smart", desc: "気高く気品あふれる女帝。一度心を許した相手には一筋縄ではいかない一途な情熱を注ぎます。" },
+      { name: "ビビ", group: "smart", desc: "平和を愛し、人のために努力を惜しまない情に厚いリーダー。気品と強い覚悟を持っています。" },
+      { name: "たしぎ", group: "smart", desc: "生真面目でまっすぐな努力家。自分の信じる正義に向かって健気に突き進む誠実さを持っています。" },
+
+      // サポート・気配り系
+      { name: "サンジ", group: "support", desc: "スマートで気配り上手な情熱家。誰かを喜ばせることが好きで、細やかな優しさと高い美学を持っています。" },
+      { name: "トニートニー・チョッパー", group: "support", desc: "素直で純粋、人の役に立ちたいという優しい気持ちの持ち主。素直な可愛らしさで愛されます。" },
+      { name: "コビー", group: "support", desc: "気弱だった自分を乗り越え、人のために勇敢に立ち向かう努力家。誠実で成長著しい好青年です。" },
+
+      // ユニーク・愛され系
+      { name: "ウソップ", group: "unique", desc: "親しみやすく親切なムードメーカー！臆病な一面があっても、土壇場で勇気を振り絞る愛されキャラです。" },
+      { name: "フランキー", group: "unique", desc: "豪快で人情に厚いアニキ！ロマンを追求し、涙もろくて仲間のために全力を尽くします。" },
+      { name: "ブルック", group: "unique", desc: "陽気でポジティブな紳士。厳しい過去を乗り越えた経験から、場を明るく和ませる才能があります。" },
+      { name: "バギー", group: "unique", desc: "運と愛嬌で成り上がるトリックスター！憎めないキャラクターで、なぜか人に恵まれる強運の持ち主です。" },
+      { name: "ペローナ", group: "unique", desc: "ツンデレで自分の「かわいい」にこだわりを持つ個性的キャラ。強がりつつも面倒見の良い一面があります。" }
+    ];
+
+    function calc() {
+      const scores = { leader: 0, stoic: 0, cool: 0, smart: 0, support: 0, unique: 0 };
+      
+      for (let i = 1; i <= 15; i++) {
+        const sel = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!sel) {
+          alert(`Q${i} に回答していません！すべての質問に答えてね。`);
+          return;
+        }
+        if (scores[sel.value] !== undefined) {
+          scores[sel.value]++;
+        }
+      }
+
+      // 最も得点の高いグループを抽出
+      let topGroup = "leader";
+      let maxScore = -1;
+      for (const group in scores) {
+        if (scores[group] > maxScore) {
+          maxScore = scores[group];
+          topGroup = group;
+        }
+      }
+
+      // 該当グループのキャラ候補一覧から決定
+      const candidates = characters.filter(c => c.group === topGroup);
+      const chosenChar = candidates[Math.floor(Math.random() * candidates.length)];
+
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("resType").innerText = "【 " + chosenChar.name + " 】タイプ";
+      document.getElementById("resDesc").innerText = chosenChar.desc;
+    }
+  </script>
+
+</body>
+</html>
