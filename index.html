@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>きらめき恋愛診断ポータル</title>
+  <title>恋の魔法診断サロン</title>
   <style>
     body {
       font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
@@ -15,38 +15,46 @@
       justify-content: center;
       align-items: center;
       color: #555;
+      box-sizing: border-box;
     }
     .container {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.93);
       border-radius: 24px;
       padding: 35px 20px;
       max-width: 480px;
       width: 100%;
       box-shadow: 0 12px 30px rgba(240, 140, 200, 0.25);
       text-align: center;
-      box-sizing: border-box;
     }
     h1 {
       color: #ff6b81;
-      font-size: 1.6rem;
-      margin-bottom: 8px;
+      font-size: 1.5rem;
+      margin-bottom: 6px;
     }
     p.sub {
-      font-size: 0.9rem;
-      color: #888;
+      font-size: 0.85rem;
+      color: #777;
       margin-bottom: 25px;
+    }
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #9a73b5;
+      text-align: left;
+      margin: 15px 0 8px 5px;
+      letter-spacing: 1px;
     }
     .menu-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
     .card-btn {
       display: flex;
       align-items: center;
       background: #ffffff;
       border: 2px solid #ffccd5;
-      padding: 14px 18px;
+      padding: 12px 16px;
       border-radius: 16px;
       text-decoration: none;
       color: #4a4a4a;
@@ -54,26 +62,33 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     }
     .card-btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: #ff4757;
       background: #fff5f7;
       box-shadow: 0 6px 15px rgba(255, 107, 129, 0.2);
     }
+    .tarot-border {
+      border-color: #d8b4fe;
+    }
+    .tarot-border:hover {
+      border-color: #a855f7;
+      background: #f3e8ff;
+    }
     .icon {
-      font-size: 1.8rem;
-      margin-right: 15px;
+      font-size: 1.7rem;
+      margin-right: 14px;
     }
     .text-group {
       text-align: left;
     }
     .title {
       font-weight: bold;
-      font-size: 1rem;
-      color: #ff4757;
+      font-size: 0.95rem;
+      color: #333;
       display: block;
     }
     .desc {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: #777;
       margin-top: 2px;
     }
@@ -82,53 +97,56 @@
 <body>
 
   <div class="container">
-    <h1>💖 きらめき恋愛診断 💖</h1>
-    <p class="sub">気になるテーマを選んで、あなたの恋のタイプを診断してみてね！</p>
+    <h1>💖 恋の魔法診断サロン 💖</h1>
+    <p class="sub">今のあなたに必要なメッセージを占ってみてね</p>
 
+    <!-- 質問形式（3つ） -->
+    <div class="section-title">📝 質問でわかる性格診断</div>
     <div class="menu-list">
       
-      <!-- 診断 1 -->
       <a href="type1.html" class="card-btn">
         <span class="icon">🐶</span>
         <div class="text-group">
           <span class="title">1. 犬系？猫系？恋愛タイプ診断</span>
-          <div class="desc">あなたの甘えかた・接しかたの癖が分かります</div>
+          <div class="desc">3つの質問であなたの甘えかたをチェック！</div>
         </div>
       </a>
 
-      <!-- 診断 2 -->
       <a href="type2.html" class="card-btn">
-        <span class="icon">☕</span>
-        <div class="text-group">
-          <span class="title">2. 理想の初デートシチュエーション診断</span>
-          <div class="desc">あなたにぴったりの胸キュンデートプラン</div>
-        </div>
-      </a>
-
-      <!-- 診断 3 -->
-      <a href="type3.html" class="card-btn">
         <span class="icon">💌</span>
         <div class="text-group">
-          <span class="title">3. 恋のLINE返信スピード診断</span>
-          <div class="desc">連絡の頻度から分かる恋愛依存度チェック</div>
+          <span class="title">2. 恋のLINE返信スピード診断</span>
+          <div class="desc">連絡の癖からわかるあなたの恋愛依存度</div>
         </div>
       </a>
 
-      <!-- 診断 4 -->
-      <a href="type4.html" class="card-btn">
-        <span class="icon">🔮</span>
-        <div class="text-group">
-          <span class="title">4. あなたの運命の相手の特徴診断</span>
-          <div class="desc">どんな人と相性が良いのかを占います</div>
-        </div>
-      </a>
-
-      <!-- 診断 5 -->
-      <a href="type5.html" class="card-btn">
+      <a href="type3.html" class="card-btn">
         <span class="icon">🍰</span>
         <div class="text-group">
-          <span class="title">5. スイーツで例えるあなたの恋愛性格</span>
-          <div class="desc">ショートケーキ？ビターチョコ？あなたの恋の味</div>
+          <span class="title">3. スイーツで例える恋愛性格診断</span>
+          <div class="desc">あなたの恋の味はショートケーキ？ビターチョコ？</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- タロット形式（2つ） -->
+    <div class="section-title" style="margin-top: 25px;">🔮 タロットカード占い</div>
+    <div class="menu-list">
+
+      <a href="type4.html" class="card-btn tarot-border">
+        <span class="icon">🌙</span>
+        <div class="text-group">
+          <span class="title">4. 今の彼のあなたへの本音占い</span>
+          <div class="desc">カードを1枚選んで彼の気持ちを確かめる</div>
+        </div>
+      </a>
+
+      <a href="type5.html" class="card-btn tarot-border">
+        <span class="icon">✨</span>
+        <div class="text-group">
+          <span class="title">5. 今日のふたりの恋愛運勢タロット</span>
+          <div class="desc">今日引き寄せる恋のラッキーアドバイス</div>
         </div>
       </a>
 
