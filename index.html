@@ -1,47 +1,139 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>♡ 恋の魔法診断サロン - 全占い一覧 ♡</title>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'M PLUS Rounded 1c', sans-serif; background: #fff0f5; color: #d63384; text-align: center; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 30px; box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3); }
-        h1 { color: #ff4775; margin-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .menu-btn { 
-            background: #ffe4e6; border: 2px solid #ffb6c1; border-radius: 15px; 
-            padding: 20px 10px; cursor: pointer; color: #d63384; font-weight: bold;
-            transition: 0.3s;
-        }
-        .menu-btn:hover { background: #ffb6c1; color: white; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>きらめき恋愛診断ポータル</title>
+  <style>
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+      background: linear-gradient(135deg, #ffe6fa 0%, #e0c3fc 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #555;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      padding: 35px 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 12px 30px rgba(240, 140, 200, 0.25);
+      text-align: center;
+      box-sizing: border-box;
+    }
+    h1 {
+      color: #ff6b81;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    p.sub {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 25px;
+    }
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .card-btn {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 2px solid #ffccd5;
+      padding: 14px 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #4a4a4a;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .card-btn:hover {
+      transform: translateY(-3px);
+      border-color: #ff4757;
+      background: #fff5f7;
+      box-shadow: 0 6px 15px rgba(255, 107, 129, 0.2);
+    }
+    .icon {
+      font-size: 1.8rem;
+      margin-right: 15px;
+    }
+    .text-group {
+      text-align: left;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 1rem;
+      color: #ff4757;
+      display: block;
+    }
+    .desc {
+      font-size: 0.78rem;
+      color: #777;
+      margin-top: 2px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>♡ 恋の魔法診断サロン ♡</h1>
-        <p>気になる占いをえらんでね♪</p>
-        <div class="grid" id="menu-list">
-            <!-- ここにJavaScriptでボタンを生成 -->
+
+  <div class="container">
+    <h1>💖 きらめき恋愛診断 💖</h1>
+    <p class="sub">気になるテーマを選んで、あなたの恋のタイプを診断してみてね！</p>
+
+    <div class="menu-list">
+      
+      <!-- 診断 1 -->
+      <a href="type1.html" class="card-btn">
+        <span class="icon">🐶</span>
+        <div class="text-group">
+          <span class="title">1. 犬系？猫系？恋愛タイプ診断</span>
+          <div class="desc">あなたの甘えかた・接しかたの癖が分かります</div>
         </div>
+      </a>
+
+      <!-- 診断 2 -->
+      <a href="type2.html" class="card-btn">
+        <span class="icon">☕</span>
+        <div class="text-group">
+          <span class="title">2. 理想の初デートシチュエーション診断</span>
+          <div class="desc">あなたにぴったりの胸キュンデートプラン</div>
+        </div>
+      </a>
+
+      <!-- 診断 3 -->
+      <a href="type3.html" class="card-btn">
+        <span class="icon">💌</span>
+        <div class="text-group">
+          <span class="title">3. 恋のLINE返信スピード診断</span>
+          <div class="desc">連絡の頻度から分かる恋愛依存度チェック</div>
+        </div>
+      </a>
+
+      <!-- 診断 4 -->
+      <a href="type4.html" class="card-btn">
+        <span class="icon">🔮</span>
+        <div class="text-group">
+          <span class="title">4. あなたの運命の相手の特徴診断</span>
+          <div class="desc">どんな人と相性が良いのかを占います</div>
+        </div>
+      </a>
+
+      <!-- 診断 5 -->
+      <a href="type5.html" class="card-btn">
+        <span class="icon">🍰</span>
+        <div class="text-group">
+          <span class="title">5. スイーツで例えるあなたの恋愛性格</span>
+          <div class="desc">ショートケーキ？ビターチョコ？あなたの恋の味</div>
+        </div>
+      </a>
+
     </div>
+  </div>
 
-    <script>
-        // 100個まで増やすためのリスト
-        const uranaiList = [
-            { name: "今日の恋運勢", link: "uranai01.html" },
-            { name: "彼の本音診断", link: "uranai02.html" },
-            { name: "恋愛こじらせ度", link: "uranai03.html" },
-            { name: "モテ魅力診断", link: "uranai04.html" },
-            { name: "恋の引き寄せ", link: "uranai05.html" },
-            // ...ここにあと95個まで増やせます
-        ];
-
-        const listDiv = document.getElementById('menu-list');
-        uranaiList.forEach(u => {
-            listDiv.innerHTML += `<button class="menu-btn" onclick="location.href='${u.link}'">${u.name}</button>`;
-        });
-    </script>
 </body>
 </html>
